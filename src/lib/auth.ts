@@ -75,7 +75,18 @@ export async function verifyAdminCredentials(
   password: string
 ): Promise<boolean> {
   const rawAdminEmail = process.env.SUPER_ADMIN_EMAIL;
-  const rawAdminHash = process.env.SUPER_ADMIN_PASSWORD_HASH;
+  let rawAdminHash =
+    process.env.SUPER_ADMIN_PASSWORD_HASH ||
+    process.env.SUPER_ADMIN_PASSWORD;
+
+  // In development, if Next.js @next/env wiped out an unescaped '$' in .env or .env.local,
+  // gracefully fall back to the default dev bcrypt hash for "admin123"
+  if (
+    (!rawAdminHash || rawAdminHash.trim() === "") &&
+    process.env.NODE_ENV !== "production"
+  ) {
+    rawAdminHash = "$2b$10$EJb2x9Z4AM9KHJOiIMufIugXTplmWwdXiBMs1LNE95LqlCgWfc5q6";
+  }
 
   if (!rawAdminEmail || !rawAdminHash) {
     console.error("SUPER_ADMIN_EMAIL or SUPER_ADMIN_PASSWORD_HASH is not set in environment.");
@@ -90,10 +101,11 @@ export async function verifyAdminCredentials(
     return false;
   }
 
-  // If the configured value is a bcrypt hash
-  if (adminHash.startsWith("$2")) {
+  // Handle both unescaped ($2b$...) and literal escaped (\$2b$...) bcrypt hashes
+  const cleanHash = adminHash.startsWith("\\$2") ? adminHash.replace(/\\/g, "") : adminHash;
+  if (cleanHash.startsWith("$2")) {
     try {
-      const match = await bcrypt.compare(password, adminHash);
+      const match = await bcrypt.compare(password, cleanHash);
       if (match) return true;
     } catch (e) {
       console.warn("[Auth] Bcrypt comparison error:", e);
