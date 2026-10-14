@@ -16,7 +16,7 @@ export function ContactForm() {
   );
 
   return (
-    <div className="bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-xl transition-colors duration-200">
+    <div className="bg-white dark:bg-slate-900/70 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl shadow-slate-100/80 dark:shadow-none transition-colors duration-200">
       <div className="mb-6">
         <h3 className="text-xl font-bold text-slate-950 dark:text-white mb-1">
           Envie uma mensagem
@@ -63,7 +63,7 @@ export function ContactForm() {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5"
+              className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5"
             >
               Seu nome ou Nome da Empresa <span className="text-emerald-600 dark:text-emerald-400">*</span>
             </label>
@@ -74,7 +74,7 @@ export function ContactForm() {
               required
               placeholder="Ex: João da Silva ou Silva Consultoria"
               defaultValue=""
-              className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 text-sm transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-500 text-sm transition-all shadow-xs"
             />
             {state.errors?.name && (
               <p className="text-rose-600 dark:text-rose-400 text-xs mt-1.5">{state.errors.name}</p>
@@ -86,7 +86,7 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5"
+                className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5"
               >
                 E-mail de contato <span className="text-emerald-600 dark:text-emerald-400">*</span>
               </label>
@@ -97,7 +97,7 @@ export function ContactForm() {
                 required
                 placeholder="seuemail@empresa.com.br"
                 defaultValue=""
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 text-sm transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-500 text-sm transition-all shadow-xs"
               />
               {state.errors?.email && (
                 <p className="text-rose-600 dark:text-rose-400 text-xs mt-1.5">{state.errors.email}</p>
@@ -107,7 +107,7 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="phone"
-                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5"
+                className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5"
               >
                 Telefone / WhatsApp <span className="text-emerald-600 dark:text-emerald-400">*</span>
               </label>
@@ -118,7 +118,7 @@ export function ContactForm() {
                 required
                 placeholder="(11) 99999-9999"
                 defaultValue=""
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 text-sm transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-500 text-sm transition-all shadow-xs"
               />
               {state.errors?.phone && (
                 <p className="text-rose-600 dark:text-rose-400 text-xs mt-1.5">{state.errors.phone}</p>
@@ -130,7 +130,7 @@ export function ContactForm() {
           <div>
             <label
               htmlFor="message"
-              className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5"
+              className="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1.5"
             >
               Conte sobre o site que você precisa <span className="text-emerald-600 dark:text-emerald-400">*</span>
             </label>
@@ -141,7 +141,7 @@ export function ContactForm() {
               required
               placeholder="Ex: Preciso de um site institucional moderno para a minha empresa com apresentação de serviços e botão de WhatsApp..."
               defaultValue=""
-              className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 text-sm transition-colors resize-y"
+              className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-500 text-sm transition-all shadow-xs resize-y"
             ></textarea>
             {state.errors?.message && (
               <p className="text-rose-600 dark:text-rose-400 text-xs mt-1.5">{state.errors.message}</p>
@@ -151,7 +151,7 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={isPending}
-            className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.01] active:scale-[0.99]"
+            className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.01] active:scale-[0.99]"
           >
             {isPending ? (
               <>

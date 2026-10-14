@@ -41,10 +41,10 @@ export function ProjectsGallery({ initialProjects }: ProjectsGalleryProps) {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition-all ${
+                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
                   isSelected
-                    ? "bg-emerald-500 text-slate-950 font-semibold shadow-md shadow-emerald-500/20"
-                    : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 shadow-sm"
+                    ? "bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20"
+                    : "bg-white dark:bg-slate-900 border border-slate-200 hover:border-slate-300 dark:border-slate-800 text-slate-700 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white shadow-xs"
                 }`}
               >
                 {cat}
@@ -63,7 +63,7 @@ export function ProjectsGallery({ initialProjects }: ProjectsGalleryProps) {
           <button
             type="button"
             onClick={() => setSelectedCategory("Todos")}
-            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition-colors"
+            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-sm font-semibold transition-colors shadow-xs"
           >
             Ver todas as categorias
           </button>
@@ -77,8 +77,8 @@ export function ProjectsGallery({ initialProjects }: ProjectsGalleryProps) {
       )}
 
       {/* Conversion Banner below gallery */}
-      <div className="mt-16 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-12 text-center shadow-sm">
-        <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3">
+      <div className="mt-16 bg-white dark:bg-slate-900/60 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-8 sm:p-12 text-center shadow-xl shadow-slate-100/80 dark:shadow-none">
+        <h3 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white mb-3">
           Precisa de um site pensado exclusivamente para o seu negócio?
         </h3>
         <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">
