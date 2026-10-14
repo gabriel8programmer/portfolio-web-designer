@@ -40,10 +40,10 @@ export default async function AdminDashboardPage() {
       {/* Title & Actions */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
             Painel de Controle
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
             Visão geral dos projetos cadastrados e solicitações de clientes recebidas.
           </p>
         </div>
@@ -61,54 +61,54 @@ export default async function AdminDashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Projetos no Portfólio
             </span>
-            <span className="p-2 rounded-xl bg-slate-800 text-slate-300">
+            <span className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
               <FolderIcon className="w-4 h-4" />
             </span>
           </div>
-          <p className="text-3xl font-extrabold text-white mt-3">{projectsCount}</p>
+          <p className="text-3xl font-extrabold text-slate-900 dark:text-white mt-3">{projectsCount}</p>
           <Link
             href="/admin/projetos"
-            className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 mt-4 font-medium"
+            className="inline-flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 mt-4 font-semibold"
           >
             <span>Gerenciar projetos</span>
             <ArrowRightIcon className="w-3 h-3" />
           </Link>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Mensagens Recebidas
             </span>
-            <span className="p-2 rounded-xl bg-slate-800 text-slate-300">
+            <span className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
               <MessageSquareIcon className="w-4 h-4" />
             </span>
           </div>
-          <p className="text-3xl font-extrabold text-white mt-3">{messagesCount}</p>
+          <p className="text-3xl font-extrabold text-slate-900 dark:text-white mt-3">{messagesCount}</p>
           <Link
             href="/admin/mensagens"
-            className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 mt-4 font-medium"
+            className="inline-flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 mt-4 font-semibold"
           >
             <span>Ver todas as mensagens</span>
             <ArrowRightIcon className="w-3 h-3" />
           </Link>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Novas / Não Lidas
             </span>
             <span
               className={`p-2 rounded-xl ${
                 unreadCount > 0
-                  ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
-                  : "bg-slate-800 text-slate-400"
+                  ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
+                  : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
               }`}
             >
               <MessageSquareIcon className="w-4 h-4" />
@@ -116,12 +116,12 @@ export default async function AdminDashboardPage() {
           </div>
           <p
             className={`text-3xl font-extrabold mt-3 ${
-              unreadCount > 0 ? "text-amber-400" : "text-slate-400"
+              unreadCount > 0 ? "text-amber-600 dark:text-amber-400" : "text-slate-500 dark:text-slate-400"
             }`}
           >
             {unreadCount}
           </p>
-          <span className="text-xs text-slate-500 mt-4 block">
+          <span className="text-xs text-slate-500 dark:text-slate-400 mt-4 block">
             {unreadCount > 0
               ? "Existem contatos aguardando sua resposta"
               : "Todas as mensagens foram lidas"}
@@ -130,28 +130,28 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Recent Inquiries List */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
-        <div className="p-6 border-b border-slate-800 flex items-center justify-between">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-bold text-white">Últimas Mensagens de Contato</h2>
-            <p className="text-xs text-slate-400">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">Últimas Mensagens de Contato</h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Contatos recebidos através do formulário do site.
             </p>
           </div>
           <Link
             href="/admin/mensagens"
-            className="text-xs text-emerald-400 hover:text-emerald-300 font-medium"
+            className="text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 font-semibold"
           >
             Ver todas ({messagesCount}) &rarr;
           </Link>
         </div>
 
         {recentMessages.length === 0 ? (
-          <div className="text-center py-12 text-slate-500 text-sm">
+          <div className="text-center py-12 text-slate-500 dark:text-slate-400 text-sm">
             Nenhuma mensagem recebida ainda.
           </div>
         ) : (
-          <div className="divide-y divide-slate-800">
+          <div className="divide-y divide-slate-100 dark:divide-slate-800">
             {recentMessages.map((msg) => {
               const cleanPhone = msg.phone.replace(/\D/g, "");
               const waLink = `https://wa.me/55${cleanPhone}`;
@@ -160,21 +160,23 @@ export default async function AdminDashboardPage() {
                 <div
                   key={msg.id}
                   className={`p-6 transition-colors ${
-                    !msg.read ? "bg-slate-800/60" : "hover:bg-slate-800/40"
+                    !msg.read
+                      ? "bg-amber-50/70 dark:bg-slate-800/60"
+                      : "hover:bg-slate-50 dark:hover:bg-slate-800/40"
                   }`}
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-white text-sm">
+                      <span className="font-semibold text-slate-900 dark:text-white text-sm">
                         {msg.name}
                       </span>
                       {!msg.read && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30">
                           Nova
                         </span>
                       )}
                     </div>
-                    <span className="text-xs text-slate-500">
+                    <span className="text-xs text-slate-500 dark:text-slate-400">
                       {new Date(msg.createdAt).toLocaleDateString("pt-BR", {
                         day: "2-digit",
                         month: "2-digit",
@@ -185,10 +187,10 @@ export default async function AdminDashboardPage() {
                     </span>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 mb-3">
+                  <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 dark:text-slate-400 mb-3">
                     <a
                       href={`mailto:${msg.email}`}
-                      className="hover:text-white transition-colors"
+                      className="hover:text-slate-900 dark:hover:text-white transition-colors"
                     >
                       {msg.email}
                     </a>
@@ -197,14 +199,14 @@ export default async function AdminDashboardPage() {
                       href={waLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 transition-colors"
+                      className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 transition-colors font-medium"
                     >
                       <WhatsAppIcon className="w-3.5 h-3.5" />
                       <span>{msg.phone}</span>
                     </a>
                   </div>
 
-                  <p className="text-slate-300 text-sm leading-relaxed bg-slate-950/40 p-3.5 rounded-xl border border-slate-800/80">
+                  <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed bg-slate-50 dark:bg-slate-950/40 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800/80">
                     {msg.message}
                   </p>
                 </div>

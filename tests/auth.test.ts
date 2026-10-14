@@ -85,3 +85,23 @@ test("Authentication: issues and validates tamper-proof signed session tokens", 
     process.env.ADMIN_SESSION_SECRET = originalSecret;
   }
 });
+
+test("Authentication: handles quoted env variables and plaintext password fallback", async () => {
+  const originalEmail = process.env.SUPER_ADMIN_EMAIL;
+  const originalHash = process.env.SUPER_ADMIN_PASSWORD_HASH;
+
+  try {
+    // Quoted email and plaintext password (common mistake when users set Vercel envs)
+    process.env.SUPER_ADMIN_EMAIL = '"admin@gbtest.com"';
+    process.env.SUPER_ADMIN_PASSWORD_HASH = '"MinhaSenhaForte2025!"';
+
+    const isValid = await verifyAdminCredentials("admin@gbtest.com", "MinhaSenhaForte2025!");
+    assert.strictEqual(isValid, true, "Should handle quoted email and plaintext password in env");
+
+    const isCaseInsensitiveEmail = await verifyAdminCredentials("ADMIN@gbtest.com ", "MinhaSenhaForte2025!");
+    assert.strictEqual(isCaseInsensitiveEmail, true, "Should handle trimmed and case-insensitive email input");
+  } finally {
+    process.env.SUPER_ADMIN_EMAIL = originalEmail;
+    process.env.SUPER_ADMIN_PASSWORD_HASH = originalHash;
+  }
+});

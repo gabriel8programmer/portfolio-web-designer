@@ -8,7 +8,7 @@ export function getSecretKey(): string {
   if (!secret || secret.length < 16) {
     return "default-gbsoftware-dev-secret-key-32chars!";
   }
-  return secret;
+  return secret.replace(/^["']|["']$/g, "").trim();
 }
 
 export function signPayload(payload: string): string {
@@ -56,9 +56,12 @@ export function verifySessionToken(token: string): { email: string } | null {
       return null;
     }
 
-    const adminEmail = process.env.SUPER_ADMIN_EMAIL;
-    if (adminEmail && session.email !== adminEmail.trim().toLowerCase()) {
-      return null;
+    const rawAdminEmail = process.env.SUPER_ADMIN_EMAIL;
+    if (rawAdminEmail) {
+      const adminEmail = rawAdminEmail.replace(/^["']|["']$/g, "").trim().toLowerCase();
+      if (session.email !== adminEmail) {
+        return null;
+      }
     }
 
     return { email: session.email };
@@ -71,20 +74,32 @@ export async function verifyAdminCredentials(
   email: string,
   password: string
 ): Promise<boolean> {
-  const adminEmail = process.env.SUPER_ADMIN_EMAIL;
-  const adminHash = process.env.SUPER_ADMIN_PASSWORD_HASH;
+  const rawAdminEmail = process.env.SUPER_ADMIN_EMAIL;
+  const rawAdminHash = process.env.SUPER_ADMIN_PASSWORD_HASH;
 
-  if (!adminEmail || !adminHash) {
+  if (!rawAdminEmail || !rawAdminHash) {
     console.error("SUPER_ADMIN_EMAIL or SUPER_ADMIN_PASSWORD_HASH is not set in environment.");
     return false;
   }
 
+  const adminEmail = rawAdminEmail.replace(/^["']|["']$/g, "").trim().toLowerCase();
+  const adminHash = rawAdminHash.replace(/^["']|["']$/g, "").trim();
   const normalizedInputEmail = email.trim().toLowerCase();
-  const normalizedAdminEmail = adminEmail.trim().toLowerCase();
 
-  if (normalizedInputEmail !== normalizedAdminEmail) {
+  if (normalizedInputEmail !== adminEmail) {
     return false;
   }
 
-  return bcrypt.compare(password, adminHash);
+  // If the configured value is a bcrypt hash
+  if (adminHash.startsWith("$2")) {
+    try {
+      const match = await bcrypt.compare(password, adminHash);
+      if (match) return true;
+    } catch (e) {
+      console.warn("[Auth] Bcrypt comparison error:", e);
+    }
+  }
+
+  // Graceful fallback: If the admin configured a plaintext password directly in env
+  return password === adminHash;
 }

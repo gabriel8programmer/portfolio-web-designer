@@ -21,16 +21,16 @@ export default async function AdminDashboardLayout({
   const session = await requireAdminAuth();
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col transition-colors duration-200">
       {/* Admin Top Navigation */}
-      <header className="border-b border-slate-800 bg-slate-900/90 backdrop-blur-md sticky top-0 z-40">
+      <header className="border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md sticky top-0 z-40 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Left: Brand & Admin Badge */}
             <div className="flex items-center gap-3">
               <Link href="/admin" className="flex items-center gap-2" aria-label="Painel Admin">
                 <Logo className="h-7 w-auto" />
-                <span className="hidden sm:inline-flex px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span className="hidden sm:inline-flex px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
                   Admin
                 </span>
               </Link>
@@ -40,20 +40,20 @@ export default async function AdminDashboardLayout({
             <nav className="flex items-center space-x-1 sm:space-x-4">
               <Link
                 href="/admin"
-                className="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+                className="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
                 Início
               </Link>
               <Link
                 href="/admin/projetos"
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
                 <FolderIcon className="w-3.5 h-3.5" />
                 <span>Projetos</span>
               </Link>
               <Link
                 href="/admin/mensagens"
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
                 <MessageSquareIcon className="w-3.5 h-3.5" />
                 <span>Mensagens</span>
@@ -67,7 +67,7 @@ export default async function AdminDashboardLayout({
               <Link
                 href="/"
                 target="_blank"
-                className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors shadow-xs"
               >
                 <span>Ver Site</span>
                 <ExternalLinkIcon className="w-3 h-3" />
@@ -76,7 +76,7 @@ export default async function AdminDashboardLayout({
               <form action={logoutAdminAction}>
                 <button
                   type="submit"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-rose-300 hover:text-rose-200 bg-rose-950/40 hover:bg-rose-900/50 border border-rose-500/30 transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-rose-700 dark:text-rose-300 hover:text-rose-900 dark:hover:text-rose-200 bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/50 border border-rose-200 dark:border-rose-500/30 transition-colors shadow-xs"
                   title={`Desconectar (${session.email})`}
                 >
                   <LogOutIcon className="w-3.5 h-3.5" />
