@@ -10,6 +10,8 @@
     "test": "node --experimental-strip-types --test tests/**/*.test.ts"
   },
   "dependencies": {
+    "@libsql/client": "^0.18.0",
+    "@prisma/adapter-libsql": "^6.19.3",
     "@prisma/client": "^6.19.3",
     "bcryptjs": "^3.0.3",
     "next": "16.4.0",
