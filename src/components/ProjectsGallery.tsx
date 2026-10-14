@@ -44,7 +44,7 @@ export function ProjectsGallery({ initialProjects }: ProjectsGalleryProps) {
                 className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition-all ${
                   isSelected
                     ? "bg-emerald-500 text-slate-950 font-semibold shadow-md shadow-emerald-500/20"
-                    : "bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700"
+                    : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 shadow-sm"
                 }`}
               >
                 {cat}
@@ -56,14 +56,14 @@ export function ProjectsGallery({ initialProjects }: ProjectsGalleryProps) {
 
       {/* Projects Grid */}
       {filteredProjects.length === 0 ? (
-        <div className="text-center py-16 bg-slate-900/40 border border-slate-800 rounded-2xl p-8">
-          <p className="text-slate-400 text-base mb-4">
+        <div className="text-center py-16 bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm">
+          <p className="text-slate-600 dark:text-slate-400 text-base mb-4">
             Nenhum projeto encontrado nesta categoria no momento.
           </p>
           <button
             type="button"
             onClick={() => setSelectedCategory("Todos")}
-            className="px-4 py-2 rounded-xl bg-slate-800 text-slate-200 text-sm hover:bg-slate-700"
+            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm transition-colors"
           >
             Ver todas as categorias
           </button>
@@ -77,11 +77,11 @@ export function ProjectsGallery({ initialProjects }: ProjectsGalleryProps) {
       )}
 
       {/* Conversion Banner below gallery */}
-      <div className="mt-16 bg-slate-900/60 border border-slate-800 rounded-3xl p-8 sm:p-12 text-center">
-        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+      <div className="mt-16 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-12 text-center shadow-sm">
+        <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3">
           Precisa de um site pensado exclusivamente para o seu negócio?
         </h3>
-        <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">
+        <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">
           Desenvolvemos a estrutura completa: identidade visual, fotos dos seus produtos/serviços e botão de WhatsApp direto para os seus clientes.
         </p>
         <a

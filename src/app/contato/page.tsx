@@ -32,13 +32,13 @@ export default function ContatoPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Heading */}
         <div className="max-w-3xl mb-12">
-          <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-2 block">
+          <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2 block">
             Canais de Atendimento
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white tracking-tight mb-4">
             Vamos criar o site ideal para a sua empresa?
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
             Seja para tirar dúvidas, receber uma estimativa de investimento ou apresentar suas ideias, estamos prontos para atender você.
           </p>
         </div>
@@ -48,16 +48,16 @@ export default function ContatoPage() {
           {/* Left Column: Direct WhatsApp & Info */}
           <div className="lg:col-span-5 space-y-6">
             {/* Primary Conversion Card (WhatsApp) */}
-            <div className="bg-gradient-to-br from-emerald-950/60 to-slate-900/80 border-2 border-emerald-500/40 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-3">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/60 dark:to-slate-900/80 border-2 border-emerald-300 dark:border-emerald-500/40 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden transition-colors duration-200">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 mb-3">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 Opção mais rápida
               </div>
 
-              <h2 className="text-2xl font-bold text-white mb-2">
+              <h2 className="text-2xl font-bold text-slate-950 dark:text-white mb-2">
                 Atendimento no WhatsApp
               </h2>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
+              <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
                 Fale diretamente conosco pelo WhatsApp. É o canal mais prático para tirar dúvidas rápidas e receber uma proposta personalizada.
               </p>
 
@@ -71,21 +71,21 @@ export default function ContatoPage() {
                 <span>Conversar no WhatsApp Agora</span>
               </a>
 
-              <div className="mt-5 pt-5 border-t border-emerald-900/50 space-y-2 text-xs text-slate-300">
+              <div className="mt-5 pt-5 border-t border-emerald-200 dark:border-emerald-900/50 space-y-2 text-xs text-slate-700 dark:text-slate-300 font-medium">
                 <div className="flex items-center gap-2">
-                  <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <CheckIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Sem formulários demorados</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <CheckIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Resposta ágil em horário comercial</span>
                 </div>
               </div>
             </div>
 
             {/* Other Channels */}
-            <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-400">
+            <div className="bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 space-y-4 shadow-sm transition-colors duration-200">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Outros canais
               </h3>
 
@@ -94,27 +94,27 @@ export default function ContatoPage() {
                   href={instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white transition-colors text-sm"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors text-sm"
                 >
-                  <span className="p-2 rounded-lg bg-pink-500/10 text-pink-400 border border-pink-500/20">
+                  <span className="p-2 rounded-lg bg-pink-500/10 text-pink-600 dark:text-pink-400 border border-pink-500/20">
                     <InstagramIcon className="w-4 h-4" />
                   </span>
                   <div>
                     <span className="block font-medium">Instagram</span>
-                    <span className="text-xs text-slate-400">@gbsoftwaresolutions</span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400">@gbsoftwaresolutions</span>
                   </div>
                 </a>
 
                 <a
                   href={`mailto:${contactEmail}`}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white transition-colors text-sm"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors text-sm"
                 >
-                  <span className="p-2 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">
+                  <span className="p-2 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">
                     <MailIcon className="w-4 h-4" />
                   </span>
                   <div className="min-w-0 flex-1">
                     <span className="block font-medium">E-mail Comercial</span>
-                    <span className="text-xs text-slate-400 truncate block">
+                    <span className="text-xs text-slate-500 dark:text-slate-400 truncate block">
                       {contactEmail}
                     </span>
                   </div>

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { requireAdminAuth } from "@/lib/session";
 import { logoutAdminAction } from "@/app/actions/admin";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   FolderIcon,
   MessageSquareIcon,
@@ -62,6 +63,8 @@ export default async function AdminDashboardLayout({
 
             {/* Right: Actions */}
             <div className="flex items-center gap-3">
+              <ThemeToggle />
+
               <Link
                 href="/"
                 target="_blank"

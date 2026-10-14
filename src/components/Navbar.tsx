@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { WhatsAppIcon, MenuIcon, CloseIcon } from "./Icons";
+import { ThemeToggle } from "./ThemeToggle";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export function Navbar() {
@@ -19,7 +20,7 @@ export function Navbar() {
   const whatsappUrl = getWhatsAppUrl();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-950/80 backdrop-blur-md transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo */}
@@ -27,10 +28,10 @@ export function Navbar() {
             href="/"
             className="flex flex-col group transition-transform duration-200"
           >
-            <span className="text-xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors">
-              GB <span className="text-emerald-400">Software Solutions</span>
+            <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+              GB <span className="text-emerald-600 dark:text-emerald-400">Software Solutions</span>
             </span>
-            <span className="text-xs text-slate-400 font-medium tracking-wide">
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide">
               Web Designer para Empresas
             </span>
           </Link>
@@ -49,8 +50,8 @@ export function Navbar() {
                   href={link.href}
                   className={`text-sm font-medium transition-colors ${
                     isActive
-                      ? "text-emerald-400"
-                      : "text-slate-300 hover:text-white"
+                      ? "text-emerald-600 dark:text-emerald-400 font-semibold"
+                      : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -59,8 +60,10 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Desktop Primary WhatsApp CTA */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Desktop Actions: Theme Toggle & WhatsApp CTA */}
+          <div className="hidden md:flex items-center space-x-3">
+            <ThemeToggle />
+
             <a
               href={whatsappUrl}
               target="_blank"
@@ -72,12 +75,14 @@ export function Navbar() {
             </a>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="flex md:hidden">
+          {/* Mobile Right: Theme Toggle + Menu Button */}
+          <div className="flex md:hidden items-center space-x-2">
+            <ThemeToggle />
+
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              className="p-2 rounded-xl text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-400"
               aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             >
               {mobileMenuOpen ? (
@@ -92,8 +97,8 @@ export function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-800 bg-slate-950 px-4 pt-3 pb-6 space-y-3">
-          <div className="flex flex-col space-y-2">
+        <div className="md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 pt-3 pb-6 space-y-3 transition-colors duration-200">
+          <div className="flex flex-col space-y-1">
             {navLinks.map((link) => {
               const isActive =
                 link.href === "/"
@@ -107,8 +112,8 @@ export function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`px-3 py-2.5 rounded-lg text-base font-medium transition-colors ${
                     isActive
-                      ? "bg-slate-900 text-emerald-400"
-                      : "text-slate-300 hover:bg-slate-900 hover:text-white"
+                      ? "bg-emerald-50 dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 font-semibold"
+                      : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white"
                   }`}
                 >
                   {link.label}
