@@ -14,6 +14,7 @@ import {
 } from "@/components/Icons";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
+
 export const instant = false;
 
 export default async function HomePage() {

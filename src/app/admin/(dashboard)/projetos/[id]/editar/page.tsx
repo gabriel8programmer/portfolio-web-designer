@@ -5,6 +5,8 @@ import { prisma } from "@/lib/prisma";
 import { updateProjectAction } from "@/app/actions/admin";
 import { ProjectForm } from "@/components/admin/ProjectForm";
 
+import { connection } from "next/server";
+
 export const instant = false;
 
 export default async function EditarProjetoPage({
@@ -12,6 +14,7 @@ export default async function EditarProjetoPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await connection();
   const { id } = await params;
 
   const project = await prisma.project.findUnique({

@@ -13,9 +13,12 @@ import {
   toggleProjectFeaturedAction,
 } from "@/app/actions/admin";
 
+import { connection } from "next/server";
+
 export const instant = false;
 
 export default async function AdminProjetosPage() {
+  await connection();
   let projects: Awaited<ReturnType<typeof prisma.project.findMany>> = [];
 
   try {

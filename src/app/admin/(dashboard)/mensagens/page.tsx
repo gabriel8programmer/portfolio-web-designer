@@ -10,9 +10,12 @@ import {
   deleteMessageAction,
 } from "@/app/actions/admin";
 
+import { connection } from "next/server";
+
 export const instant = false;
 
 export default async function AdminMensagensPage() {
+  await connection();
   let messages: Awaited<ReturnType<typeof prisma.contactMessage.findMany>> = [];
 
   try {

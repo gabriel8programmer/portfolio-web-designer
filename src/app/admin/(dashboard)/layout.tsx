@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { connection } from "next/server";
 import { requireAdminAuth } from "@/lib/session";
 import { logoutAdminAction } from "@/app/actions/admin";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -18,6 +19,7 @@ export default async function AdminDashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  await connection();
   const session = await requireAdminAuth();
 
   return (

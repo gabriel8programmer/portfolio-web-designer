@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "Confira nossos projetos de websites, landing pages e modelos comerciais desenvolvidos para empresas, clínicas, consultorias e negócios locais.",
 };
 
+
 export const instant = false;
 
 export default async function ProjetosPage() {

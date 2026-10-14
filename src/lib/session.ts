@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { connection } from "next/server";
 import { redirect } from "next/navigation";
 import {
   createSessionToken,
@@ -26,6 +27,11 @@ export async function destroyAdminSession(): Promise<void> {
 }
 
 export async function getAdminSession(): Promise<{ email: string } | null> {
+  try {
+    await connection();
+  } catch {
+    // Handled in case executed in non-request environments
+  }
   const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE_NAME)?.value;
   if (!token) return null;
@@ -34,6 +40,11 @@ export async function getAdminSession(): Promise<{ email: string } | null> {
 }
 
 export async function requireAdminAuth(): Promise<{ email: string }> {
+  try {
+    await connection();
+  } catch {
+    // Handled in case executed in non-request environments
+  }
   const session = await getAdminSession();
   if (!session) {
     redirect("/admin/login");
