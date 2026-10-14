@@ -148,7 +148,7 @@ export default async function AdminDashboardPage() {
                 <div
                   key={msg.id}
                   className={`p-6 transition-colors ${
-                    !msg.read ? "bg-slate-850/50" : "hover:bg-slate-850/30"
+                    !msg.read ? "bg-slate-800/60" : "hover:bg-slate-800/40"
                   }`}
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">

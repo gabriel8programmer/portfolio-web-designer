@@ -66,16 +66,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </p>
 
         {/* Actions */}
-        <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center gap-3">
+        <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex flex-col gap-2.5">
           {project.websiteUrl && (
             <a
               href={project.websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 dark:border-slate-700 bg-white hover:bg-slate-50 dark:bg-slate-800/80 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-200 text-sm font-semibold transition-colors hover:text-slate-950 dark:hover:text-white shadow-xs"
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 dark:border-slate-700 dark:hover:border-slate-600 bg-white hover:bg-slate-100 dark:bg-slate-800/90 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white text-sm font-semibold transition-colors shadow-xs whitespace-nowrap"
             >
-              <span>Ver Demonstração</span>
-              <ExternalLinkIcon className="w-3.5 h-3.5" />
+              <span className="whitespace-nowrap">Ver Demonstração</span>
+              <ExternalLinkIcon className="w-3.5 h-3.5 shrink-0" />
             </a>
           )}
 
@@ -83,10 +83,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 dark:bg-emerald-500/15 dark:hover:bg-emerald-500/25 dark:text-emerald-300 dark:border dark:border-emerald-500/30 text-sm font-bold shadow-sm shadow-emerald-500/20 transition-all hover:scale-[1.01]"
+            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 dark:bg-emerald-500/15 dark:hover:bg-emerald-500/25 dark:text-emerald-300 dark:border dark:border-emerald-500/30 text-sm font-bold shadow-sm shadow-emerald-500/20 transition-all hover:scale-[1.005] whitespace-nowrap"
           >
-            <WhatsAppIcon className="w-4 h-4 text-slate-950 dark:text-emerald-400" />
-            <span>Quero um Site Assim</span>
+            <WhatsAppIcon className="w-4 h-4 text-slate-950 dark:text-emerald-400 shrink-0" />
+            <span className="whitespace-nowrap">Quero um Site Assim</span>
           </a>
         </div>
       </div>

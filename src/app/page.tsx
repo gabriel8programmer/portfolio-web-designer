@@ -72,18 +72,18 @@ export default async function HomePage() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-base font-bold shadow-xl shadow-emerald-500/25 transition-all hover:scale-105 active:scale-95"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-base font-bold shadow-xl shadow-emerald-500/25 transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
                 >
-                  <WhatsAppIcon className="w-5 h-5 text-slate-950" />
-                  <span>Solicitar Orçamento no WhatsApp</span>
+                  <WhatsAppIcon className="w-5 h-5 text-slate-950 shrink-0" />
+                  <span className="whitespace-nowrap">Solicitar Orçamento no WhatsApp</span>
                 </a>
 
                 <Link
                   href="/projetos"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border border-slate-300 dark:border-slate-800 bg-white hover:bg-slate-100 dark:bg-slate-900/80 dark:hover:bg-slate-800 text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white text-base font-medium transition-colors shadow-sm"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border border-slate-300 dark:border-slate-800 bg-white hover:bg-slate-100 dark:bg-slate-900/80 dark:hover:bg-slate-800 text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white text-base font-medium transition-colors shadow-sm whitespace-nowrap"
                 >
-                  <span>Ver Projetos</span>
-                  <ArrowRightIcon className="w-4 h-4" />
+                  <span className="whitespace-nowrap">Ver Projetos</span>
+                  <ArrowRightIcon className="w-4 h-4 shrink-0" />
                 </Link>
               </div>
 
@@ -239,10 +239,10 @@ export default async function HomePage() {
           <div className="mt-12 text-center">
             <Link
               href="/projetos"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-slate-50 hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-850 text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white font-medium text-sm transition-colors shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-300 hover:border-slate-400 dark:border-slate-800 dark:hover:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-800 hover:text-slate-950 dark:text-slate-200 dark:hover:text-white font-medium text-sm transition-colors shadow-sm whitespace-nowrap"
             >
-              <span>Explorar galeria completa de sites</span>
-              <ArrowRightIcon className="w-4 h-4" />
+              <span className="whitespace-nowrap">Explorar galeria completa de sites</span>
+              <ArrowRightIcon className="w-4 h-4 shrink-0" />
             </Link>
           </div>
         </div>
@@ -308,16 +308,16 @@ export default async function HomePage() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-base font-bold shadow-xl shadow-emerald-500/25 transition-all hover:scale-105"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-base font-bold shadow-xl shadow-emerald-500/25 transition-all hover:scale-105 whitespace-nowrap"
             >
-              <WhatsAppIcon className="w-5 h-5 text-slate-950" />
-              <span>Chamar no WhatsApp Agora</span>
+              <WhatsAppIcon className="w-5 h-5 text-slate-950 shrink-0" />
+              <span className="whitespace-nowrap">Chamar no WhatsApp Agora</span>
             </a>
             <Link
               href="/contato"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-full border border-slate-300 dark:border-slate-800 bg-white hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white text-base font-medium transition-colors shadow-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-full border border-slate-300 dark:border-slate-800 bg-white hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white text-base font-medium transition-colors shadow-sm whitespace-nowrap"
             >
-              <span>Enviar pelo Formulário</span>
+              <span className="whitespace-nowrap">Enviar pelo Formulário</span>
             </Link>
           </div>
         </div>

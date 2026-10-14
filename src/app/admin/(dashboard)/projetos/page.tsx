@@ -80,7 +80,7 @@ export default async function AdminProjetosPage() {
                   return (
                     <tr
                       key={project.id}
-                      className="hover:bg-slate-850/50 transition-colors"
+                      className="hover:bg-slate-800/50 transition-colors"
                     >
                       {/* Project info */}
                       <td className="py-4 px-4">
