@@ -5,9 +5,9 @@ import { prisma } from "@/lib/prisma";
 import {
   PlusIcon,
   EditIcon,
-  TrashIcon,
   ExternalLinkIcon,
 } from "@/components/Icons";
+import { DeleteConfirmButton } from "@/components/admin/DeleteConfirmButton";
 import {
   deleteProjectAction,
   toggleProjectFeaturedAction,
@@ -182,27 +182,11 @@ export default async function AdminProjetosPage() {
                             <EditIcon className="w-4 h-4" />
                           </Link>
 
-                          <form
+                          <DeleteConfirmButton
                             action={deleteWithId}
-                            onSubmit={(e) => {
-                              if (
-                                !confirm(
-                                  `Tem certeza que deseja excluir o projeto "${project.title}"?`
-                                )
-                              ) {
-                                e.preventDefault();
-                              }
-                            }}
-                            className="inline-block"
-                          >
-                            <button
-                              type="submit"
-                              title="Excluir projeto"
-                              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                            >
-                              <TrashIcon className="w-4 h-4" />
-                            </button>
-                          </form>
+                            confirmMessage={`Tem certeza que deseja excluir o projeto "${project.title}"?`}
+                            title="Excluir projeto"
+                          />
                         </div>
                       </td>
                     </tr>

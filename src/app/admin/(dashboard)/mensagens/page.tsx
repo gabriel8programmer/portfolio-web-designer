@@ -3,8 +3,8 @@ import { prisma } from "@/lib/prisma";
 import {
   WhatsAppIcon,
   MailIcon,
-  TrashIcon,
 } from "@/components/Icons";
+import { DeleteConfirmButton } from "@/components/admin/DeleteConfirmButton";
 import {
   toggleMessageReadAction,
   deleteMessageAction,
@@ -151,26 +151,11 @@ export default async function AdminMensagensPage() {
                       </button>
                     </form>
 
-                    <form
+                    <DeleteConfirmButton
                       action={deleteWithId}
-                      onSubmit={(e) => {
-                        if (
-                          !confirm(
-                            `Excluir a mensagem de "${msg.name}" permanentemente?`
-                          )
-                        ) {
-                          e.preventDefault();
-                        }
-                      }}
-                    >
-                      <button
-                        type="submit"
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                        title="Excluir mensagem"
-                      >
-                        <TrashIcon className="w-4 h-4" />
-                      </button>
-                    </form>
+                      confirmMessage={`Excluir a mensagem de "${msg.name}" permanentemente?`}
+                      title="Excluir mensagem"
+                    />
                   </div>
                 </div>
 
