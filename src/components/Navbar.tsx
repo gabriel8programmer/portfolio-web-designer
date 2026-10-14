@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { WhatsAppIcon, MenuIcon, CloseIcon } from "./Icons";
 import { ThemeToggle } from "./ThemeToggle";
+import { Logo } from "./Logo";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export function Navbar() {
@@ -26,14 +27,10 @@ export function Navbar() {
           {/* Brand Logo */}
           <Link
             href="/"
-            className="flex flex-col group transition-transform duration-200"
+            className="flex items-center group transition-transform duration-200 hover:scale-[1.01]"
+            aria-label="GB Software Solutions - Início"
           >
-            <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-              GB <span className="text-emerald-600 dark:text-emerald-400">Software Solutions</span>
-            </span>
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide">
-              Web Designer para Empresas
-            </span>
+            <Logo className="h-9 sm:h-10 w-auto" priority />
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { WhatsAppIcon, InstagramIcon } from "./Icons";
+import { Logo } from "./Logo";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 export function Footer() {
@@ -15,10 +16,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand info */}
           <div className="md:col-span-2 space-y-4">
-            <Link href="/" className="inline-block">
-              <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-                GB <span className="text-emerald-600 dark:text-emerald-400">Software Solutions</span>
-              </span>
+            <Link href="/" className="inline-block" aria-label="GB Software Solutions - Início">
+              <Logo className="h-8 w-auto" />
             </Link>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-md">
               Criação de websites profissionais, landing pages e catálogos digitais sob medida para pequenas e médias empresas, profissionais liberais e negócios locais.

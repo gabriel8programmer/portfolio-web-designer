@@ -9,6 +9,7 @@ import {
   ExternalLinkIcon,
   LogOutIcon,
 } from "@/components/Icons";
+import { Logo } from "@/components/Logo";
 
 export const instant = false;
 
@@ -26,13 +27,11 @@ export default async function AdminDashboardLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Left: Brand & Admin Badge */}
-            <div className="flex items-center gap-4">
-              <Link href="/admin" className="flex items-center gap-2">
-                <span className="font-bold text-white text-base">
-                  GB <span className="text-emerald-400">Admin</span>
-                </span>
+            <div className="flex items-center gap-3">
+              <Link href="/admin" className="flex items-center gap-2" aria-label="Painel Admin">
+                <Logo className="h-7 w-auto" />
                 <span className="hidden sm:inline-flex px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  Painel Privado
+                  Admin
                 </span>
               </Link>
             </div>

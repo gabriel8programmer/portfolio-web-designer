@@ -4,6 +4,7 @@ import React, { useActionState } from "react";
 import Link from "next/link";
 import { loginAdminAction, AdminActionResult } from "@/app/actions/admin";
 import { LockIcon } from "@/components/Icons";
+import { Logo } from "@/components/Logo";
 
 const initialState: AdminActionResult = {
   success: false,
@@ -21,10 +22,8 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md">
         {/* Brand Header */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-block mb-3">
-            <span className="text-2xl font-bold tracking-tight text-white">
-              GB <span className="text-emerald-400">Software Solutions</span>
-            </span>
+          <Link href="/" className="inline-block mb-3" aria-label="GB Software Solutions - Início">
+            <Logo className="h-9 w-auto" />
           </Link>
           <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-400 uppercase tracking-widest">
             <LockIcon className="w-3.5 h-3.5 text-emerald-400" />
