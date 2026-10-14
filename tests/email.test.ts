@@ -35,13 +35,37 @@ test("Email Service: Gracefully handles missing SMTP credentials", async () => {
   }
 });
 
+test("Email Service: Detects configured SendPulse API credentials", () => {
+  const originalApiId = process.env.SENDPULSE_API_USER_ID;
+  const originalApiSecret = process.env.SENDPULSE_API_SECRET;
+
+  try {
+    process.env.SENDPULSE_API_USER_ID = "test_user_id";
+    process.env.SENDPULSE_API_SECRET = "test_secret";
+
+    assert.strictEqual(isEmailConfigured(), true);
+  } finally {
+    if (originalApiId !== undefined) {
+      process.env.SENDPULSE_API_USER_ID = originalApiId;
+    } else {
+      delete process.env.SENDPULSE_API_USER_ID;
+    }
+
+    if (originalApiSecret !== undefined) {
+      process.env.SENDPULSE_API_SECRET = originalApiSecret;
+    } else {
+      delete process.env.SENDPULSE_API_SECRET;
+    }
+  }
+});
+
 test("Email Service: Detects configured SMTP credentials", () => {
   const originalHost = process.env.SMTP_HOST;
   const originalUser = process.env.SMTP_USER;
   const originalPass = process.env.SMTP_PASS;
 
   try {
-    process.env.SMTP_HOST = "smtp.exemplo.com";
+    process.env.SMTP_HOST = "smtp-pulse.com";
     process.env.SMTP_USER = "user@exemplo.com";
     process.env.SMTP_PASS = "secretPass";
 
@@ -54,3 +78,4 @@ test("Email Service: Detects configured SMTP credentials", () => {
     process.env.SMTP_PASS = originalPass;
   }
 });
+
