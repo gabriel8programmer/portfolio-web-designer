@@ -13,9 +13,15 @@ import {
 export const instant = false;
 
 export default async function AdminMensagensPage() {
-  const messages = await prisma.contactMessage.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  let messages: Awaited<ReturnType<typeof prisma.contactMessage.findMany>> = [];
+
+  try {
+    messages = await prisma.contactMessage.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+  } catch (error) {
+    console.warn("[Admin Mensagens] Queries skipped or table pending migration:", error);
+  }
 
   const unreadCount = messages.filter((m) => !m.read).length;
 

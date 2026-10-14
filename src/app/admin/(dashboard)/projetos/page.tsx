@@ -16,9 +16,15 @@ import {
 export const instant = false;
 
 export default async function AdminProjetosPage() {
-  const projects = await prisma.project.findMany({
-    orderBy: [{ order: "asc" }, { createdAt: "desc" }],
-  });
+  let projects: Awaited<ReturnType<typeof prisma.project.findMany>> = [];
+
+  try {
+    projects = await prisma.project.findMany({
+      orderBy: [{ order: "asc" }, { createdAt: "desc" }],
+    });
+  } catch (error) {
+    console.warn("[Admin Projetos] Queries skipped or table pending migration:", error);
+  }
 
   return (
     <div className="space-y-6">

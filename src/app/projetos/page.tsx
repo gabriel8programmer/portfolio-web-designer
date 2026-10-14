@@ -12,9 +12,15 @@ export const metadata: Metadata = {
 export const instant = false;
 
 export default async function ProjetosPage() {
-  const projects = await prisma.project.findMany({
-    orderBy: { order: "asc" },
-  });
+  let projects: Awaited<ReturnType<typeof prisma.project.findMany>> = [];
+
+  try {
+    projects = await prisma.project.findMany({
+      orderBy: { order: "asc" },
+    });
+  } catch (error) {
+    console.warn("[ProjetosPage] Projects query skipped or table pending migration:", error);
+  }
 
   return (
     <div className="py-12 sm:py-16 md:py-20">

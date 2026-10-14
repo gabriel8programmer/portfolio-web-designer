@@ -12,8 +12,13 @@ import {
 export const instant = false;
 
 export default async function AdminDashboardPage() {
-  const [projectsCount, messagesCount, unreadCount, recentMessages] =
-    await Promise.all([
+  let projectsCount = 0;
+  let messagesCount = 0;
+  let unreadCount = 0;
+  let recentMessages: Awaited<ReturnType<typeof prisma.contactMessage.findMany>> = [];
+
+  try {
+    const results = await Promise.all([
       prisma.project.count(),
       prisma.contactMessage.count(),
       prisma.contactMessage.count({ where: { read: false } }),
@@ -22,6 +27,13 @@ export default async function AdminDashboardPage() {
         take: 5,
       }),
     ]);
+    projectsCount = results[0];
+    messagesCount = results[1];
+    unreadCount = results[2];
+    recentMessages = results[3];
+  } catch (error) {
+    console.warn("[Admin Dashboard] Initial database queries skipped or tables pending migration:", error);
+  }
 
   return (
     <div className="space-y-8">

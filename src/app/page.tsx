@@ -17,17 +17,23 @@ import { getWhatsAppUrl } from "@/lib/whatsapp";
 export const instant = false;
 
 export default async function HomePage() {
-  let featuredProjects = await prisma.project.findMany({
-    where: { featured: true },
-    orderBy: { order: "asc" },
-    take: 3,
-  });
+  let featuredProjects: Awaited<ReturnType<typeof prisma.project.findMany>> = [];
 
-  if (featuredProjects.length === 0) {
+  try {
     featuredProjects = await prisma.project.findMany({
+      where: { featured: true },
       orderBy: { order: "asc" },
       take: 3,
     });
+
+    if (featuredProjects.length === 0) {
+      featuredProjects = await prisma.project.findMany({
+        orderBy: { order: "asc" },
+        take: 3,
+      });
+    }
+  } catch (error) {
+    console.warn("[HomePage] Projects query skipped or table pending migration:", error);
   }
 
   const whatsappUrl = getWhatsAppUrl();
