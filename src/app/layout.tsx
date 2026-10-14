@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,10 +68,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans selection:bg-emerald-500/30 selection:text-emerald-300 transition-colors duration-200">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppFloat />
+        {children}
       </body>
     </html>
   );
