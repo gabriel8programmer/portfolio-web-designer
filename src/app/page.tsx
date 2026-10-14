@@ -1,69 +1,274 @@
-import Image from "next/image";
+import React from "react";
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+import { ProjectCard } from "@/components/ProjectCard";
+import {
+  WhatsAppIcon,
+  InstagramIcon,
+  ArrowRightIcon,
+  CheckIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+  GlobeIcon,
+  PhoneIcon,
+} from "@/components/Icons";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
-export default function Home() {
+export const instant = false;
+
+export default async function HomePage() {
+  let featuredProjects = await prisma.project.findMany({
+    where: { featured: true },
+    orderBy: { order: "asc" },
+    take: 3,
+  });
+
+  if (featuredProjects.length === 0) {
+    featuredProjects = await prisma.project.findMany({
+      orderBy: { order: "asc" },
+      take: 3,
+    });
+  }
+
+  const whatsappUrl = getWhatsAppUrl();
+  const instagramUrl =
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL ||
+    "https://instagram.com/gbsoftwaresolutions";
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-32 border-b border-slate-900 bg-gradient-to-b from-slate-950 via-slate-900/40 to-slate-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          {/* Subtle glow highlight */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+          <div className="max-w-3xl mx-auto text-center">
+            {/* Tag / Positioning */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-medium text-emerald-400 mb-6 shadow-sm">
+              <SparklesIcon className="w-3.5 h-3.5" />
+              <span>Web Designer Especialista para Empresas</span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
+              Websites profissionais que{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
+                geram credibilidade
+              </span>{" "}
+              e atraem novos clientes.
+            </h1>
+
+            {/* Short Introduction */}
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto font-normal">
+              Criamos sites modernos, rápidos no smartphone e pensados para transformar visitantes vindos do Instagram e do Google Maps em contatos reais no seu WhatsApp.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-base font-bold shadow-xl shadow-emerald-500/25 transition-all hover:scale-105 active:scale-95"
+              >
+                <WhatsAppIcon className="w-5 h-5 text-slate-950" />
+                <span>Solicitar Orçamento no WhatsApp</span>
+              </a>
+
+              <Link
+                href="/projetos"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-slate-200 hover:text-white text-base font-medium transition-colors"
+              >
+                <span>Ver Nossos Projetos</span>
+                <ArrowRightIcon className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {/* Channels & Social Links */}
+            <div className="flex items-center justify-center gap-6 pt-2 text-xs text-slate-400">
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-slate-400 hover:text-pink-400 transition-colors"
+              >
+                <InstagramIcon className="w-4 h-4" />
+                <span>@gbsoftwaresolutions</span>
+              </a>
+              <span className="text-slate-700">•</span>
+              <span className="text-slate-400">
+                Atendimento rápido para todo o Brasil
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Commercial Highlights / Value Props */}
+      <section className="py-16 md:py-20 border-b border-slate-900 bg-slate-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+              Por que investir em um site profissional para o seu negócio?
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base">
+              Apresente sua empresa com a seriedade que seus clientes procuram antes de fechar um serviço ou compra.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 sm:p-8">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5 text-emerald-400">
+                <ShieldCheckIcon className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">
+                Credibilidade Imediata
+              </h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Quando alguém pesquisa seu serviço, encontrar um site estruturado transmite segurança e confirma que sua empresa é confiável e profissional.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 sm:p-8">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5 text-emerald-400">
+                <PhoneIcon className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">
+                Contato Rápido no WhatsApp
+              </h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Botões de contato estrategicamente posicionados para que o cliente não perca tempo e inicie a conversa diretamente com você.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 sm:p-8">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5 text-emerald-400">
+                <GlobeIcon className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">
+                Perfeito em Qualquer Celular
+              </h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Mais de 80% do público acessa pelo smartphone. Seus clientes terão uma navegação fluida, sem letras minúsculas ou botões difíceis de clicar.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects Showcase */}
+      <section className="py-16 md:py-24 border-b border-slate-900 bg-slate-950/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-2 block">
+                Portfólio Selecionado
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+                Projetos & Modelos de Sites
+              </h2>
+              <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-xl">
+                Confira como apresentamos a proposta visual e comercial de diferentes segmentos de negócios.
+              </p>
+            </div>
+
+            <Link
+              href="/projetos"
+              className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-semibold text-sm transition-colors"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <span>Ver todos os projetos</span>
+              <ArrowRightIcon className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/projetos"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-800 bg-slate-900 hover:bg-slate-850 text-slate-200 hover:text-white font-medium text-sm transition-colors"
             >
-              Learning
-            </a>{" "}
-            center.
+              <span>Explorar galeria completa de sites</span>
+              <ArrowRightIcon className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* About the Web Designer / Brand Positioning */}
+      <section className="py-16 md:py-20 border-b border-slate-900 bg-slate-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto bg-slate-900/50 border border-slate-800 rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 p-0.5 shrink-0 shadow-lg shadow-emerald-500/20">
+                <div className="w-full h-full bg-slate-950 rounded-2xl flex items-center justify-center text-2xl font-black text-emerald-400">
+                  GB
+                </div>
+              </div>
+
+              <div className="space-y-4 text-center sm:text-left">
+                <h3 className="text-2xl font-bold text-white">
+                  Sobre a GB Software Solutions
+                </h3>
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  Somos especializados na criação de websites sob medida para pequenas e médias empresas, consultorias, clínicas e profissionais que precisam de uma presença digital séria e comercialmente atraente.
+                </p>
+                <p className="text-slate-400 text-sm leading-relaxed">
+                  Nosso foco não é encher seu site de termos técnicos difíceis, e sim garantir que o seu cliente entenda o que você faz, veja o valor do seu trabalho e clique para falar com você.
+                </p>
+                <div className="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-4">
+                  <span className="inline-flex items-center gap-1.5 text-xs text-slate-300">
+                    <CheckIcon className="w-4 h-4 text-emerald-400" />
+                    Projetos sob medida
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-xs text-slate-300">
+                    <CheckIcon className="w-4 h-4 text-emerald-400" />
+                    Suporte e acompanhamento
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-xs text-slate-300">
+                    <CheckIcon className="w-4 h-4 text-emerald-400" />
+                    Entrega ágil
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Direct WhatsApp Call To Action Banner */}
+      <section className="py-16 md:py-24 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-950">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+            Vamos colocar a sua empresa em destaque na internet?
+          </h2>
+          <p className="text-slate-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+            Converse agora diretamente pelo WhatsApp, tire suas dúvidas e receba uma proposta personalizada para o seu site.
           </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-base font-bold shadow-xl shadow-emerald-500/25 transition-all hover:scale-105"
+            >
+              <WhatsAppIcon className="w-5 h-5 text-slate-950" />
+              <span>Chamar no WhatsApp Agora</span>
+            </a>
+            <Link
+              href="/contato"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-full border border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-200 text-base font-medium transition-colors"
+            >
+              <span>Enviar pelo Formulário</span>
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
     </div>
   );
 }
