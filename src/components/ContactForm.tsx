@@ -47,7 +47,7 @@ export function ContactForm() {
       {state.success ? (
         <div className="text-center py-8">
           <p className="text-slate-700 dark:text-slate-300 text-sm mb-4">
-            Mensagem registrada com sucesso em nosso sistema!
+            Recebemos sua mensagem! Nossa equipe já foi notificada e entrará em contato em breve.
           </p>
           <button
             type="button"

@@ -177,7 +177,8 @@ async function sendViaSmtp(
     html: buildEmailHtml(params),
   };
 
-  await transporter.sendMail(mailOptions);
+  const info = await transporter.sendMail(mailOptions);
+  console.info(`[Email Sent via SMTP] Para: ${recipient} | MessageId: ${info.messageId}`);
   return { success: true };
 }
 

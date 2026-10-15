@@ -46,12 +46,18 @@ export async function submitContactForm(
     });
 
     // 2. Send email notification if configured
-    await sendContactNotification({
+    const emailResult = await sendContactNotification({
       name: name.trim(),
       email: email.trim(),
       phone: phone.trim(),
       message: message.trim(),
     });
+
+    if (!emailResult.success) {
+      console.warn(
+        `[Contato] Mensagem salva no banco, mas falhou ao enviar e-mail: ${emailResult.error}`
+      );
+    }
 
     return {
       success: true,
