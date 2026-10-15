@@ -2,7 +2,6 @@
 
 import React, { useActionState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { loginAdminAction, AdminActionResult } from "@/app/actions/admin";
 import { LockIcon } from "@/components/Icons";
 import { Logo } from "@/components/Logo";
@@ -14,7 +13,6 @@ const initialState: AdminActionResult = {
 };
 
 export default function AdminLoginPage() {
-  const router = useRouter();
   const [state, formAction, isPending] = useActionState(
     loginAdminAction,
     initialState
@@ -22,10 +20,12 @@ export default function AdminLoginPage() {
 
   React.useEffect(() => {
     if (state.success) {
-      router.replace("/admin");
-      router.refresh();
+      // Use window.location.replace to perform a clean browser navigation
+      // across the authentication boundary, resetting router cache state
+      // and preventing re-trigger loops upon subsequent logout.
+      window.location.replace("/admin");
     }
-  }, [state.success, router]);
+  }, [state.success]);
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-slate-50 dark:bg-slate-950 transition-colors duration-200 relative">

@@ -48,6 +48,7 @@ export async function loginAdminAction(
 
 export async function logoutAdminAction(): Promise<void> {
   await destroyAdminSession();
+  revalidatePath("/admin", "layout");
   redirect("/admin/login");
 }
 
