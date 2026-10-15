@@ -2,6 +2,7 @@
 
 import React, { useActionState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { loginAdminAction, AdminActionResult } from "@/app/actions/admin";
 import { LockIcon } from "@/components/Icons";
 import { Logo } from "@/components/Logo";
@@ -13,10 +14,18 @@ const initialState: AdminActionResult = {
 };
 
 export default function AdminLoginPage() {
+  const router = useRouter();
   const [state, formAction, isPending] = useActionState(
     loginAdminAction,
     initialState
   );
+
+  React.useEffect(() => {
+    if (state.success) {
+      router.replace("/admin");
+      router.refresh();
+    }
+  }, [state.success, router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-slate-50 dark:bg-slate-950 transition-colors duration-200 relative">
@@ -92,10 +101,15 @@ export default function AdminLoginPage() {
 
             <button
               type="submit"
-              disabled={isPending}
+              disabled={isPending || state.success}
               className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50 hover:scale-[1.01] active:scale-[0.99] mt-2 cursor-pointer"
             >
-              {isPending ? (
+              {state.success ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></span>
+                  <span>Autenticado! Entrando no painel...</span>
+                </>
+              ) : isPending ? (
                 <>
                   <span className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></span>
                   <span>Autenticando...</span>

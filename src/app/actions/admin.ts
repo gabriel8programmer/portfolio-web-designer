@@ -39,7 +39,11 @@ export async function loginAdminAction(
   }
 
   await createAdminSession(email);
-  redirect("/admin");
+  revalidatePath("/admin", "layout");
+  return {
+    success: true,
+    message: "",
+  };
 }
 
 export async function logoutAdminAction(): Promise<void> {

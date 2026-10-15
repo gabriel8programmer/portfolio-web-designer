@@ -110,6 +110,7 @@ export function Footer() {
           <div className="flex items-center space-x-6">
             <Link
               href="/admin"
+              prefetch={false}
               className="text-slate-500 hover:text-slate-700 dark:hover:text-slate-400 transition-colors"
             >
               Acesso Restrito
